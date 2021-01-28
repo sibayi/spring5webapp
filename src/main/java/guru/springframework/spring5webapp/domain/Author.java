@@ -63,5 +63,26 @@ public class Author {
 	public void setBooks(Set<Book> books) {
 		this.books = books;
 	}
+	
+	@Override
+	public String toString() {
+		return "Author [id=" + id + ", firstname=" + firstname + ", lastName=" + lastName + ", books=" + books + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) return true;
+		
+		if(obj == null || getClass() != obj.getClass()) return false;
+		
+		Author author = (Author) obj;
+		
+		return id != null ? id.equals(author.id) : author.id == null;
+	}
+	
+	@Override
+	public int hashCode() {
+		return id != null ? id.hashCode() : 0;
+	}
 
 }
