@@ -1,6 +1,7 @@
 package guru.springframework.spring5webapp.domain;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -66,26 +67,27 @@ public class Book {
 	public void setAuthors(Set<Author> authors) {
 		this.authors = authors;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + ", isbn=" + isbn + ", authors=" + authors + "]";
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if(this == obj) return true;
-		
-		if(obj == null || getClass() != obj.getClass()) return false;
-		
-		Book book = (Book) obj;
-		
-		return id != null ? id.equals(book.id) : book.id == null;
-	}
-	
-	@Override
 	public int hashCode() {
-		return id != null ? id.hashCode() : 0;
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		return Objects.equals(id, other.id);
 	}
 
 }
