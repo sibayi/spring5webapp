@@ -1,7 +1,5 @@
 package guru.springframework.spring5webapp.bootstrap;
 
-import java.util.List;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -41,9 +39,13 @@ public class BootStrapData implements CommandLineRunner {
 		Author eric = new Author("Eric", "Evans");
 		Book ddd = new Book("Domain Driven Design", "123456789");
 		Publisher penguin = new Publisher("Penguin", "4168 Main St", "New York City", "New York", 85423);
+		publisherRepository.save(penguin);
 		
 		eric.getBooks().add(ddd);
 		ddd.getAuthors().add(eric);
+		
+		ddd.setPublisher(penguin);
+		penguin.getBooks().add(ddd);
 		
 		authorRepository.save(eric);
 		bookRepository.save(ddd);
@@ -56,20 +58,25 @@ public class BootStrapData implements CommandLineRunner {
 		rod.getBooks().add(noEJB);
 		noEJB.getAuthors().add(rod);
 		
+		noEJB.setPublisher(penguin);
+		penguin.getBooks().add(noEJB);
+		
 		authorRepository.save(rod);
 		bookRepository.save(noEJB);
 		publisherRepository.save(random);
+		publisherRepository.save(penguin);
 		
-		/*System.out.println("Number of books: " + bookRepository.count());
+		System.out.println("Number of books: " + bookRepository.count());
 		System.out.println("Number of authors: " + authorRepository.count());
-		System.out.println("Number of publishers: " + publisherRepository.count());*/
+		System.out.println("Number of " + penguin.getName() + " books: " + penguin.getBooks().size());
+		System.out.println("Number of " + random.getName() + " books: " + random.getBooks().size());
 		
-		Iterable<Author> authorList = authorRepository.findAll();
-		Iterable<Book> bookList = bookRepository.findAll();
+		/*Iterable<Author> authorList = authorRepository.findAll();
+		Iterable<Book> bookList = bookRepository.findAll();*/
 		Iterable<Publisher> publisherList = publisherRepository.findAll();
 		
-		//authorList.forEach(System.out::println);
-		//bookList.forEach(System.out::println);
+		/*authorList.forEach(System.out::println);
+		bookList.forEach(System.out::println);*/
 		publisherList.forEach(System.out::println);
 		
 	}
