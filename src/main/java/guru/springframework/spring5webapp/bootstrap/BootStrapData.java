@@ -66,17 +66,17 @@ public class BootStrapData implements CommandLineRunner {
 		publisherRepository.save(random);
 		publisherRepository.save(penguin);
 		
-		System.out.println("Number of books: " + bookRepository.count());
+		/*System.out.println("Number of books: " + bookRepository.count());
 		System.out.println("Number of authors: " + authorRepository.count());
 		System.out.println("Number of " + penguin.getName() + " books: " + penguin.getBooks().size());
-		System.out.println("Number of " + random.getName() + " books: " + random.getBooks().size());
+		System.out.println("Number of " + random.getName() + " books: " + random.getBooks().size());*/
 		
-		/*Iterable<Author> authorList = authorRepository.findAll();
-		Iterable<Book> bookList = bookRepository.findAll();*/
+		Iterable<Author> authorList = authorRepository.findAll();
+		Iterable<Book> bookList = bookRepository.findAll();
 		Iterable<Publisher> publisherList = publisherRepository.findAll();
 		
-		/*authorList.forEach(System.out::println);
-		bookList.forEach(System.out::println);*/
+		authorList.forEach(System.out::println);
+		bookList.forEach(System.out::println);
 		publisherList.forEach(System.out::println);
 		
 	}
